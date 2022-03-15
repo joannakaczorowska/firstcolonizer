@@ -16,7 +16,6 @@ library(grid)
 
 #preparation of the dataset - melting
 
-setwd("C:/Users/jkacz/Documents/PhD/First_colonizer_project/new_detection_limit")
 read.csv("new_det_limit.csv") -> qPCR_new_det
 
 qPCR_new_det <- melt(qPCR_new_det)
