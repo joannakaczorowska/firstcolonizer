@@ -322,7 +322,9 @@ ggplot(proc_kids, aes(x = Months, y = value, fill = variable)) +
   scale_fill_brewer(palette="Set2") +
   labs(x = "Age (months)", y = "% positive samples") +
   scale_y_continuous(limits = c(0, 100)) +
-  theme(legend.position = "none", axis.title.x = element_text(size = 20), axis.title.y = element_text(size=20), axis.text.x = element_text(size=16), axis.text.y = element_text(size = 18), panel.background = element_rect(fill="white", colour = "grey50"), panel.grid.major = element_line(colour = "grey50", linetype = "dashed"))
+  theme(legend.position = "none", axis.title.x = element_text(size = 20), axis.title.y = element_text(size=20), 
+        axis.text.x = element_text(size=16), axis.text.y = element_text(size = 18), panel.background = element_rect(fill="white", colour = "grey50"), 
+        panel.grid.major = element_line(colour = "grey50", linetype = "dashed"))
 
 ggsave("prop_pos_kids_new_det.svg")
 ggsave("prop_pos_kids_new_det.png")
