@@ -4,15 +4,15 @@
 library("tidyverse")
 library("dplyr")
 library("reshape2")
-library(ggpubr)
+library("ggpubr")
 library("svglite")
 library("survival")
-library(scales)
-library(epitools)
-library(ggsignif)
-library(broom)
-library(rstatix)
-library(grid)
+library("scales")
+library("epitools")
+library("ggsignif")
+library("broom")
+library("rstatix")
+library("grid")
 
 #preparation of the dataset - melting
 
@@ -24,11 +24,12 @@ write.csv(qPCR_new_det, "qPCR_new_det_melt.csv")
 ### After the melting process I added the Months column manually in Excel.
 
 ### MILK
-### SCATTERPLOT
+### SCATTERPLOT - to show whether the AV prevalence changes depending on the moment of breastmilk collection.
+
 read.csv("new_det_limit_m.csv") -> qPCR_new_det_m
 qPCR_milk <- subset(qPCR_new_det_m, Number > 114)
 
-qPCR_milk %>% mutate(Sample = fct_reorder(Sample, Number)) %>% ### super important script!
+qPCR_milk %>% mutate(Sample = fct_reorder(Sample, Number)) %>% ### sorting the samples according to the sample number
   ggplot(aes(x = Sample, y = value)) +
   geom_point(size = 6, aes(shape = variable, fill = variable, colour = variable)) +
   labs(x = "Samples", y = "DNA copies per mL breastmilk") +
@@ -136,7 +137,7 @@ print(chisq.test(milk_chi))
 qPCR_kids <- subset(qPCR_new_det_m, Number < 115)
 qPCR_kids_012 <- subset(qPCR_kids, Months < 12)
 
-qPCR_kids_012 %>% mutate(Sample = fct_reorder(Sample, Months)) %>% ### super important script!
+qPCR_kids_012 %>% mutate(Sample = fct_reorder(Sample, Months)) %>% 
   ggplot(aes(x = Sample, y = value)) +
   geom_point(size = 6, aes(shape = variable, fill = variable, colour = variable)) +
   labs(x = "Samples", y = "DNA copies per mL serum") +
@@ -158,7 +159,7 @@ ggsave("scatter_012_new_det.png", width = 18, height = 8)
 
 qPCR_kids_old12 <- subset(qPCR_kids, Months > 12)
 
-qPCR_kids_old12 %>% mutate(Sample = fct_reorder(Sample, Months)) %>% ### super important script!
+qPCR_kids_old12 %>% mutate(Sample = fct_reorder(Sample, Months)) %>% 
   ggplot(aes(x = Sample, y = value)) +
   geom_point(size = 6, aes(shape = variable, fill = variable, colour = variable)) +
   labs(x = "Samples", y = "DNA copies per mL serum") +
